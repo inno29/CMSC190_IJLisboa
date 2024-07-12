@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Impact-Map</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Leaflet CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    />
+
+    <!-- Leaflet.draw CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"
+    />
+    <!-- Leaflet Search CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap JavaScript (optional, if you need JavaScript features) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-search@2.3.7/dist/leaflet-search.src.css"
+    />
+
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      #holder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+      }
+      #map-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        background-color: rgba(211, 211, 211, 1);
+
+      }
+
+      #info {
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        text-align: center;
+        flex-grow: 1;
+        max-width: 280px;
+        flex-grow: 0.5;/* Set a fixed height */
+        overflow-y: auto; /* Enable vertical scrolling */
+        border: 2px solid gray;
+        height: 100%;
+        min-width: 280px;
+        text-align: justify;
+      }
+
+      /* Style the scrollbar */
+      #info::-webkit-scrollbar {
+        width: 10px; /* Set the width of the scrollbar */
+      }
+
+      /* Track */
+      #info::-webkit-scrollbar-track {
+        background: #f1f1f1; /* Color of the track */
+      }
+
+      /* Handle */
+      #info::-webkit-scrollbar-thumb {
+        background: #888; /* Color of the scrollbar handle */
+      }
+
+      /* Handle on hover */
+      #info::-webkit-scrollbar-thumb:hover {
+        background: #555; /* Color of the scrollbar handle on hover */
+      }
+
+      #map {
+        width: 90%;
+        height: 90vh;
+        border: 5px solid gray;
+        border-radius: 10px;
+      }
+
+      #legend {
+        display: flex;
+        max-height: 500px;
+        max-width: 100%;
+        justify-content: space-around;
+        width: 100%;
+        border: 2px solid gray;
+        border-radius: 10px ;
+      }
+
+      #legend button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        max-width: 300px;
+        max-height: 80px;
+      }
+      
+
+      #legend button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map-container">
+      <div id="info">
+        <img src = ./assets/Asset.png>
+        Global human modification across terrestrial lands. Black
+        represents areas with no mapped modification (HM = 0), 
+        dark blue in low modification (0.00 < HM ≤ 0.10), purple in
+        moderate modification (0.10 < HM ≤ 0.40), 
+        and yellow in high modification (0.40 < HM ≤ 1.00). Note that low
+        modified lands are areas 
+        with low mapped human influence and is not necessarily 
+        equivalent to the extent of native vegetation
+      <br/>
+      <br/>
+      <button type="button" class="btn btn-primary btn-lg" onclick="window.open('https://forms.gle/5LNHwGe74wJfAMA27', '_blank')">Answer Survey</button>
+      <button type="button" class="btn btn-primary btn-lg mt-4" onclick="window.open('https://essd.copernicus.org/articles/12/1953/2020/essd-12-1953-2020.html', '_blank')">Scientific References</button>
+      <button type="button" class="btn btn-primary btn-lg mt-4" onclick="window.open('https://gee-community-catalog.org/projects/ghm/', '_blank')">Learn More About gHM</button>
+      </div>
+      <div id="holder"><div id="map"></div>
+      <div id="legend">
+        <button id="actionButton1">Get GHM average of an area</button>
+        <button id="actionButton2">Get GHM percentage of an area</button>
+      </div></div>
+        
+     
+    </div>
+
+    <input type="hidden" id="ghm_choice" value="GHM_1990" />
+    <input type="hidden" id="city_region" value="Region" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- jQuery Library -->
+    <script src="leaflet.ajax.min.js"></script>
+    <script src="https://unpkg.com/leaflet-search@2.3.7/dist/leaflet-search.src.js"></script>
+    <script src="main.js"></script>
+   
+  </body>
+</html>
